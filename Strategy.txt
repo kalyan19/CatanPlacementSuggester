@@ -1,0 +1,16 @@
+Catan Initial Settlement Placement Strategy
+
+1) Naive - random
+
+2) Greedy - choose the highest sum corners
+
+3) Diversity
+	a) with respect to resources
+	b) with respect to numbers
+
+4) Future settlements
+	a) plan ahead on what resources/numbers will be needed
+        b) take into account what naturally will be scarce and abundant based on map
+        c) take into account of ports
+        d) take into account what other players will choose
+        e) optimize for strategy - ie: go for roads/settlements vs cities/dev cards based on abundancy

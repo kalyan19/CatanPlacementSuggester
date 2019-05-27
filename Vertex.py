@@ -3,7 +3,7 @@ class Vertex:
     MAX_EDGES = 3
 
     def __init__(self):
-        self.available = False
+        self.available = True
         self.neighbors = []
         self.hexs = []
 

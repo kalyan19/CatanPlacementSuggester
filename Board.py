@@ -1,10 +1,12 @@
 from Hex import Hex
 from Vertex import Vertex
+from collections import deque
 
 class Board:
 
     NUM_HEX = 19
     RESOURCES = ["SHEEP", "HAY", "ORE", "WOOD", "BRICK", "DESERT"]
+    START_VERTEX_IDX = 1
 
     def __init__(self):
         self.HEX_TO_VERTICES = self.buildHexToVerticesTable()
@@ -34,6 +36,35 @@ class Board:
         for line in hexsAsList:
             print('  '.join(line))
 
+    # returns only vertices that are available
+    def getLegalMoves(self):
+        # traverse vertex graph via BFS
+        verticesSeen = set()
+        legalVertices = []
+        q = deque()
+        startVert = self.vertices[self.START_VERTEX_IDX]
+        q.append(startVert)
+        verticesSeen.add(startVert)
+        while q:
+            v = q.popleft()
+            if v.available:
+                legalVertices.append(v)
+            for neigh in v.neighbors:
+                if neigh not in verticesSeen:
+                    verticesSeen.add(neigh)
+                    q.append(neigh)
+
+        return legalVertices
+
+    def acceptMove(self, occupiedVertex):
+
+        if not occupiedVertex.available:
+            raise Exception("Illegal move. This vertex is unavailable.")
+
+        # update this vertex and its neighbors
+        occupiedVertex.available = False
+        for neigh in occupiedVertex.neighbors:
+            neigh.available = False
 
     # gives a mapping between a hex and all of its vertices
     # Note: hex and vertices start at index 1
@@ -170,3 +201,5 @@ class Board:
 
 b = Board()
 b.visualizeBoard()
+l = b.getLegalMoves()
+b.acceptMove(l[0])

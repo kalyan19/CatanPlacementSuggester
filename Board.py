@@ -11,7 +11,28 @@ class Board:
         self.hexs, self.vertices = self.generateStaticBoard()
 
     def visualizeBoard(self):
-        pass
+        ABBRV_TABLE = {"SHEEP": "S", "HAY": "H", "ORE": "O", "WOOD": "W", "BRICK": "B", "DESERT": "D"}
+        hexsAsList = [[""]*5 for i in range(5)]
+
+        hexIdx = 1
+        for i in range(0,3):
+            hexsAsList[0][i] =  "{} ({})".format(ABBRV_TABLE[self.hexs[hexIdx].resource], self.hexs[hexIdx].value)
+            hexIdx += 1
+        for i in range(0,4):
+            hexsAsList[1][i] = "{} ({})".format(ABBRV_TABLE[self.hexs[hexIdx].resource], self.hexs[hexIdx].value)
+            hexIdx += 1
+        for i in range(0,5):
+            hexsAsList[2][i] = "{} ({})".format(ABBRV_TABLE[self.hexs[hexIdx].resource], self.hexs[hexIdx].value)
+            hexIdx += 1
+        for i in range(0,4):
+            hexsAsList[3][i] =  "{} ({})".format(ABBRV_TABLE[self.hexs[hexIdx].resource], self.hexs[hexIdx].value)
+            hexIdx += 1
+        for i in range(0,3):
+            hexsAsList[4][i] = "{} ({})".format(ABBRV_TABLE[self.hexs[hexIdx].resource], self.hexs[hexIdx].value)
+            hexIdx += 1
+
+        for line in hexsAsList:
+            print('  '.join(line))
 
 
     # gives a mapping between a hex and all of its vertices
@@ -148,3 +169,4 @@ class Board:
 
 
 b = Board()
+b.visualizeBoard()

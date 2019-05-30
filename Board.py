@@ -195,11 +195,3 @@ class Board:
     def addEdge(self, vert1, vert2):
         vert1.addNeighbor(vert2)
         vert2.addNeighbor(vert1)
-
-
-
-
-b = Board()
-b.visualizeBoard()
-l = b.getLegalMoves()
-b.acceptMove(l[0])

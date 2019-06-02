@@ -6,6 +6,7 @@ board = Board()
 moveSuggester = MoveSuggester(board)
 suggestedMove = moveSuggester.suggestMove()
 print("Suggester suggests move {}".format(suggestedMove))
-
+board.acceptMove(suggestedMove)
+print(sum([hex.getScore() for hex in suggestedMove.hexs]))
 
 
